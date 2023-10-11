@@ -1,7 +1,7 @@
 # 学友会倉庫 予約フォーム
 
 このプロジェクトは、学友会の倉庫での物品の予約を管理するためのGoogle Apps Scriptベースのフォームを提供します。
-
+<a href="https://script.google.com/a/macros/i-u.ac.jp/s/AKfycbzDDifkx6DAXEMzgyJgviPMBhetfDHTFWrQT1AmTKwI87W6QXCL3YHCePLPD6zkrZyx">フォームのURL</a>
 ## 機能
 - ユーザーは名前、学籍番号、借りたい日付、借りる時間、返却時間、および借りる備品を入力できます。
 - 入力されたデータはGoogleスプレッドシートに自動的に保存されます。
