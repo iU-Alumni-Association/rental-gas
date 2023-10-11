@@ -1,168 +1,196 @@
 <!DOCTYPE html>
 <html>
-<head>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <head>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<style>
-  .btn { margin-bottom:auto!important; }
-  .unavailable { background-color: #f0f0f0; } 
-</style>
-</head>
-<body class="container mt-5">
+    <style>
+      .btn {
+        margin-bottom: auto !important;
+      }
+      .unavailable {
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body class="container mt-5">
     <h2 class="text-center">学友会倉庫 予約フォーム</h2>
-    <div class="text-center" style="padding: 10px;">
-    <button type=“button” class="btn btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1_1FvkpG5WyKTJ4edo1OdQig8dsVkNscAb3RNqdSsBhA/edit?usp=sharing')">管理用リストを参照</button>
+    <div class="text-center" style="padding: 10px">
+      <button
+        type="“button”"
+        class="btn btn-primary"
+        onclick="window.open('https://docs.google.com/spreadsheets/d/1_1FvkpG5WyKTJ4edo1OdQig8dsVkNscAb3RNqdSsBhA/edit?usp=sharing')"
+      >
+        管理用リストを参照
+      </button>
     </div>
     <form>
-        <div class="form-group">
-            <label for="name">借りる人の名前:</label>
-            <input type="text" id="name" class="form-control" placeholder="名前を入力　例：田中 太郎" />
-        </div>
-        <div class="form-group">
-            <label for="studentId">学籍番号:</label>
-            <input type="text" id="studentId" class="form-control" placeholder="学籍番号を入力 例：20IM0000" />
-        </div>
-        <div class="form-group">
-            <label for="borrowDate">借りたい日付:</label>
-            <input type="date" id="borrowDate" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="startTime">借りる時間:</label>
-            <input type="time" id="startTime" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="endTime">返却時間:</label>
-            <input type="time" id="endTime" class="form-control" />
-        </div>
-        <div class="form-group" id="items">
-            <label for="items">借りる備品:</label>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td><input type="text" class="form-control item" placeholder="備品番号か品目名を入力" /></td>
-                        <td style="width: 30px;"><button type="button" class="btn btn-danger btn-sm" onclick="rmItem(this)">-</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary mb-3" onclick="addItem()">+ 新しい備品を追加</button>
-            <button type="button" class="btn btn-primary" onclick="submitFm()">送信</button>
-        </div>
+      <div class="form-group">
+        <label for="name">借りる人の名前:</label>
+        <input type="text" id="name" class="form-control" placeholder="名前を入力　例：田中 太郎" />
+      </div>
+      <div class="form-group">
+        <label for="studentId">学籍番号:</label>
+        <input
+          type="text"
+          id="studentId"
+          class="form-control"
+          placeholder="学籍番号を入力 例：20IM0000"
+        />
+      </div>
+      <div class="form-group">
+        <label for="borrowDate">借りたい日付:</label>
+        <input type="date" id="borrowDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="startTime">借りる時間:</label>
+        <input type="time" id="startTime" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="endTime">返却時間:</label>
+        <input type="time" id="endTime" class="form-control" />
+      </div>
+      <div class="form-group" id="items">
+        <label for="items">借りる備品:</label>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <input type="text" class="form-control item" placeholder="備品番号か品目名を入力" />
+              </td>
+              <td style="width: 30px">
+                <button type="button" class="btn btn-danger btn-sm" onclick="rmItem(this)">
+                  -
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary mb-3" onclick="addItem()">
+          + 新しい備品を追加
+        </button>
+        <button type="button" class="btn btn-primary" onclick="submitFm()">送信</button>
+      </div>
     </form>
-    <div id="success-msg" style="display: none;" class="alert alert-success mt-3">送信完了</div>
+    <div id="success-msg" style="display: none" class="alert alert-success mt-3">送信完了</div>
     <div class="col-12">
-        <h3 class="text-center" style="padding: 15px;">備品リスト</h3>
-        <div>下記に記載されている備品は現在のものです　貸出状況によって変化する可能性があります</div>      
+      <h3 class="text-center" style="padding: 15px">備品リスト</h3>
+      <div>下記に記載されている備品は現在のものです　貸出状況によって変化する可能性があります</div>
     </div>
-    <div id="spacer" style="height: 50px;"></div> <!-- 空白用のdiv -->
-    <div class="row mt-5">
-</div>
+    <div id="spacer" style="height: 50px"></div>
+    <!-- 空白用のdiv -->
+    <div class="row mt-5"></div>
 
     <script>
-    function addItem() {
-        let tb = document.querySelector("#items table tbody");
+      function addItem() {
+        let tb = document.querySelector('#items table tbody');
         let nr = document.createElement('tr');
         nr.innerHTML = `
             <td><input type="text" class="form-control item" placeholder="備品番号か品目名を入力" /></td>
             <td style="width: 30px;"><button type="button" class="btn btn-danger btn-sm" onclick="rmItem(this)">-</button></td>`;
         tb.appendChild(nr);
-        
+
         let itemsLabel = document.querySelector("label[for='items']");
         itemsLabel.scrollIntoView({ behavior: 'smooth' });
-    }
+      }
 
-
-    function rmItem(btn) {
-        let tb = document.querySelector("#items table tbody");
+      function rmItem(btn) {
+        let tb = document.querySelector('#items table tbody');
         tb.removeChild(btn.closest('tr'));
-    }
+      }
 
-    function submitFm() {
+      function submitFm() {
         // 1. 送信ボタンを無効化
         const submitButton = document.querySelector(".btn-primary[onclick='submitFm()']");
         submitButton.disabled = true;
-        
-        let n = esc(document.getElementById("name").value);
-        let sId = esc(document.getElementById("studentId").value); 
-        let itms = document.getElementsByClassName("item");
-        let borrowDate = document.getElementById("borrowDate").value;
-        let startTime = document.getElementById("startTime").value;
-        let endTime = document.getElementById("endTime").value;
+
+        let n = esc(document.getElementById('name').value);
+        let sId = esc(document.getElementById('studentId').value);
+        let itms = document.getElementsByClassName('item');
+        let borrowDate = document.getElementById('borrowDate').value;
+        let startTime = document.getElementById('startTime').value;
+        let endTime = document.getElementById('endTime').value;
         let iv = [];
 
-        if(!isValidName(n)) {
-            alert("名前は間をスペースで区切ってください");
-            submitButton.disabled = false;
-            return;
+        if (!isValidName(n)) {
+          alert('名前は間をスペースで区切ってください');
+          submitButton.disabled = false;
+          return;
         }
-        if(!isValidId(sId)) {
-            alert("学籍番号は20IM0000の形式で入力してください");
-            submitButton.disabled = false;
-            return;
+        if (!isValidId(sId)) {
+          alert('学籍番号は20IM0000の形式で入力してください');
+          submitButton.disabled = false;
+          return;
         }
         // 時間の制約をチェック
-        if(startTime < "10:00" || endTime > "19:00" || startTime > endTime) {
-            alert("借りる時間は10:00以降、返却時間は19:00までにしてください。また、返却時間は借りる時間より後にしてください。");
-            submitButton.disabled = false;
-            return;
+        if (startTime < '10:00' || endTime > '19:00' || startTime > endTime) {
+          alert(
+            '借りる時間は10:00以降、返却時間は19:00までにしてください。また、返却時間は借りる時間より後にしてください。',
+          );
+          submitButton.disabled = false;
+          return;
         }
 
-        for(let i=0; i<itms.length; i++) {
-            iv.push(esc(itms[i].value));
+        for (let i = 0; i < itms.length; i++) {
+          iv.push(esc(itms[i].value));
         }
-        google.script.run.withSuccessHandler(onSuccess).saveData(n, sId, iv, borrowDate, startTime, endTime);
-    }
+        google.script.run
+          .withSuccessHandler(onSuccess)
+          .saveData(n, sId, iv, borrowDate, startTime, endTime);
+      }
 
-function onSuccess() {
-    document.getElementById("success-msg").style.display = "block";
-    
-    // 送信ボタンを再有効化
-    setTimeout(() => {
-        const submitButton = document.querySelector(".btn-primary[onclick='submitFm()']");
-        submitButton.disabled = false;
-    }, 100000);  //10秒後にボタンを再有効化
-}
+      function onSuccess() {
+        document.getElementById('success-msg').style.display = 'block';
 
+        // 送信ボタンを再有効化
+        setTimeout(() => {
+          const submitButton = document.querySelector(".btn-primary[onclick='submitFm()']");
+          submitButton.disabled = false;
+        }, 100000); //10秒後にボタンを再有効化
+      }
 
-    function isValidId(sId) {
+      function isValidId(sId) {
         const re = /^\d{2}[Ii][Mm]\d{4}$/;
         return re.test(sId);
-    }
+      }
 
-    function isValidName(n) {
-        const re = /^[^\s]+\s+[^\s]+$/; 
+      function isValidName(n) {
+        const re = /^[^\s]+\s+[^\s]+$/;
         return re.test(n);
-    }
+      }
 
-    function esc(str) {
-        var div = document.createElement("div");
+      function esc(str) {
+        var div = document.createElement('div');
         div.appendChild(document.createTextNode(str));
         return div.innerHTML;
-    }
+      }
 
-    window.onload = function() {
+      window.onload = function () {
         google.script.run.withSuccessHandler(renderItemsList).getItemsFromSheet();
-    };
+      };
 
-    function renderItemsList(items) {
+      function renderItemsList(items) {
         let categories = {};
 
-        items.forEach(item => {
-            if (!categories[item[4]]) {
-                categories[item[4]] = [];
-            }
-            categories[item[4]].push(item);
+        items.forEach((item) => {
+          if (!categories[item[4]]) {
+            categories[item[4]] = [];
+          }
+          categories[item[4]].push(item);
         });
 
         let output = '';
         for (let category in categories) {
-            output += `<div class="accordion mb-3" id="accordion${category}">`;
-            output += `<div class="card">
+          output += `<div class="accordion mb-3" id="accordion${category}">`;
+          output += `<div class="card">
                             <div class="card-header" id="heading${category}">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse${category}" aria-expanded="true" aria-controls="collapse${category}">
@@ -170,21 +198,20 @@ function onSuccess() {
                                     </button>
                                 </h5>
                             </div>`;
-            output += `<div id="collapse${category}" class="collapse" aria-labelledby="heading${category}" data-parent="#accordion${category}">`;
-            output += `<div class="card-body">`;
-            output += `<table class="table table-bordered"><tbody>`;
-            categories[category].forEach(item => {
-                let rowClass = item[1].includes("(利用中止)") ? "unavailable" : "";
-                output += `<tr class="${rowClass}"><td>${item[1]}</td><td> ${item[3]}</td></tr>`;
-            });
-            output += `</tbody></table>`;
-            output += `</div></div></div>`;
-            output += `</div>`;
+          output += `<div id="collapse${category}" class="collapse" aria-labelledby="heading${category}" data-parent="#accordion${category}">`;
+          output += `<div class="card-body">`;
+          output += `<table class="table table-bordered"><tbody>`;
+          categories[category].forEach((item) => {
+            let rowClass = item[1].includes('(利用中止)') ? 'unavailable' : '';
+            output += `<tr class="${rowClass}"><td>${item[1]}</td><td> ${item[3]}</td></tr>`;
+          });
+          output += `</tbody></table>`;
+          output += `</div></div></div>`;
+          output += `</div>`;
         }
 
-        document.getElementById("spacer").insertAdjacentHTML('beforebegin', output);
-    }
-
+        document.getElementById('spacer').insertAdjacentHTML('beforebegin', output);
+      }
     </script>
-</body>
+  </body>
 </html>

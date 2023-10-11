@@ -4,17 +4,18 @@ function doGet() {
   return html.setSandboxMode(HtmlService.SandboxMode.IFRAME);
 }
 
-function saveData(n, sId, itms, borrowDate, startTime, endTime) {  
-    let sh = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    let d = new Date();
-    sh.appendRow([d, n, sId, borrowDate, startTime, endTime].concat(itms)); 
+function saveData(n, sId, itms, borrowDate, startTime, endTime) {
+  let sh = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  let d = new Date();
+  sh.appendRow([d, n, sId, borrowDate, startTime, endTime].concat(itms));
 
-    sendToSlack(n, sId, itms, borrowDate, startTime, endTime); 
+  sendToSlack(n, sId, itms, borrowDate, startTime, endTime);
 }
 
 function sendToSlack(n, sId, itms, borrowDate, startTime, endTime) {
-  const formTitle = "倉庫管理フォーム"; 
-  const formUrl = "https://docs.google.com/spreadsheets/d/1hQQntKjqHPf9gZgyMfnR9oRr04zGNtwF1vpTLC_bAXc/edit?usp=sharing";
+  const formTitle = '倉庫管理フォーム';
+  const formUrl =
+    'https://docs.google.com/spreadsheets/d/1hQQntKjqHPf9gZgyMfnR9oRr04zGNtwF1vpTLC_bAXc/edit?usp=sharing';
 
   let message = `:gopher-dance: *${formTitle} - 回答通知* :gopher-dance:\n\n`;
 
@@ -25,24 +26,24 @@ function sendToSlack(n, sId, itms, borrowDate, startTime, endTime) {
   message += `:clock1030: 返却時間: ${endTime}\n`;
 
   itms.forEach((item, index) => {
-    let emoji = ":package:";
+    let emoji = ':package:';
     message += `${emoji} レンタル ${index + 1}: ${item}\n`;
   });
 
   message += `\n:link: <${formUrl}|管理シートのリンク>`;
 
-  const webhookUrl = PropertiesService.getScriptProperties().getProperty("ACCESS_TOKEN");
+  const webhookUrl = PropertiesService.getScriptProperties().getProperty('ACCESS_TOKEN');
   const options = {
-    "method" : "POST",
-    "contentType" : "application/json",
-    "payload" : JSON.stringify({"text": message})
+    method: 'POST',
+    contentType: 'application/json',
+    payload: JSON.stringify({ text: message }),
   };
 
   UrlFetchApp.fetch(webhookUrl, options);
 }
 
 function getItemsFromSheet() {
-    let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Item");
-    let range = sheet.getRange(2, 1, sheet.getLastRow() - 1, 5);
-    return range.getValues();
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Item');
+  let range = sheet.getRange(2, 1, sheet.getLastRow() - 1, 5);
+  return range.getValues();
 }
