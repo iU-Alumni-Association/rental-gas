@@ -1,8 +1,5 @@
 # 学友会倉庫 予約フォーム
 
-<img width="480" alt="image-slack" src="https://github.com/iU-Alumni-Association/rental-gas/assets/147612244/362448e7-61b5-4162-a54a-e83e1df28541">
-<img width="480" alt="image-form" src="https://github.com/iU-Alumni-Association/rental-gas/assets/147612244/fa6fd7a2-3964-45b8-84dd-c0c36654d0bc">
-
 このプロジェクトは、学友会の倉庫での物品の予約を管理するためのGoogle Apps Scriptベースのフォームを提供します。
 
 ## 機能
@@ -38,6 +35,7 @@
 ### Frontend
 
 #### HTML
+<img height="480" alt="image-form" src="https://github.com/iU-Alumni-Association/rental-gas/assets/147612244/fa6fd7a2-3964-45b8-84dd-c0c36654d0bc">
 
 1. **Bootstrap & jQuery**: BootstrapのCSSとJSファイル、およびjQueryライブラリをインポートしています。(jQueryは使ってないかも）
    
@@ -69,7 +67,8 @@
 ### Backend (Google Apps Script)
 
 - **doGet()**: ユーザーにHTMLページを提供するための関数。
-  
+
+<img width="480" alt="image-slack" src="https://github.com/iU-Alumni-Association/rental-gas/assets/147612244/362448e7-61b5-4162-a54a-e83e1df28541">
 - **saveData()**: ユーザーからのデータを受け取り、それをスプレッドシートに保存し、さらにSlackに通知を送る関数。
   
 - **sendToSlack()**: SlackのWebhookを使用して通知を送る関数。
